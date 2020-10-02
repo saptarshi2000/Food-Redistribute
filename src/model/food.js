@@ -20,7 +20,7 @@ const foodschema = mongoose.Schema({
     },
     posted_by:{
         type:String,
-        require:true,
+        require:true
     },
     max_people:{
         type:Number,
