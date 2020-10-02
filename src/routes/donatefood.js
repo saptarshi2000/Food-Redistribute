@@ -10,13 +10,15 @@ router.post('/', async(req, res) => {
             items: req.body.items,
             food_type: req.body.food_type,
             posted_by: req.body.posted_by,
-            max_people: req.body.max_people
+            max_people: req.body.max_people,
+            expirationDate:new Date(Date.now() + (parseFloat(req.body.hour) * 3600 * 1000))
         })
 
         await newfood.save().then(()=>{
             res.status(201).json({})
         })
-    }catch(e){
+    }catch(err){
+        console.error(err)
         res.status(500).json()
     }
 })

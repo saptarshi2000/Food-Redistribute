@@ -1,4 +1,4 @@
-const ADMIN = 0
-const DONER = 1
-const VOLENTER = 2
-const DISTRIBUTER = 3
+const INDIVIDUAL = 1
+const ORGANIZATION = 2
+
+module.exports

@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
-
-const memberSchema = mongoose.Schema({
+const memberSchema = new mongoose.Schema({
     email:{
         type:String,
         require:true
@@ -17,10 +16,10 @@ const memberSchema = mongoose.Schema({
         type:Number,
         require:true
     },
-    organisation_name:{
+    organization_name:{
         type:String
     },
-    organisation_id:{
+    organization_id:{
         type:String
     },
     created_at:{
@@ -39,3 +38,5 @@ const memberSchema = mongoose.Schema({
         default:false
     }
 })
+
+module.exports = mongoose.model("members",memberSchema)

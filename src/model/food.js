@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-
-const foodschema = mongoose.Schema({
+const { Schema } = mongoose
+const foodschema = new Schema({
     title:{
         type:String,
         require: true
@@ -16,7 +16,11 @@ const foodschema = mongoose.Schema({
     posted_at:{
         type:Date,
         require:true,
-        default:Date.now()
+        default:Date.now()        
+    },
+    expirationDate: {
+        type: Date,
+        expires: 0
     },
     posted_by:{
         type:String,
