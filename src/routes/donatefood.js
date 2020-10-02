@@ -1,13 +1,9 @@
 const express = require('express')
-const {
-    body
-} = require('express-validator')
-const jwt = require('jsonwebtoken')
 const router = express.Router()
 
 const Food = require('../model/food')
 
-router.post('/', (req, res, ) => {
+router.post('/', async(req, res) => {
     try {
         var newfood = new Food({
             title: req.body.title,
