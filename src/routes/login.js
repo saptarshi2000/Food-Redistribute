@@ -9,7 +9,7 @@ const router  = express.Router()
 router.post('/',async(req,res) => {
     if(req.body.token != null){
         try{
-            jwt.verify(req.body.token,"720f8f9f54ec6119666227a9bad67db50d297740",(err,user)=>{
+            jwt.verify(req.body.token,"private-key",(err,user)=>{
                 if (err) return res.status(401).send()
                 return res.status(200).send()
             })
@@ -29,7 +29,7 @@ router.post('/',async(req,res) => {
                     _id:member._id,
                     email:email
                 }
-                const token = jwt.sign(payload,"720f8f9f54ec6119666227a9bad67db50d297740",{expiresIn:'1h'})
+                const token = jwt.sign(payload,"private-key",{expiresIn:'1h'})
 
                 res.status(200).json({"token":token})
             }else{
