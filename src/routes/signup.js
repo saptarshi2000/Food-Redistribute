@@ -9,7 +9,7 @@ router.post('/',async(req,res)=>{
     var email = req.body.email
     const chkmember = await member.findOne({email})
     if(chkmember){
-        return res.status(412).send()
+        return res.status(412).json({"result":"useralready_exist"})
     }
     try{
         const salt = await bcryptjs.genSalt()
