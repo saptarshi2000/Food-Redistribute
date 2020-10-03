@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
+require('dotenv').config()
 
-const MONGOURI = "mongodb://localhost/fooddbjs"
+const MONGOURI = process.env.DATABASE_URL || "mongodb://localhost/fooddbjs"
 
 const InitiatDb = async () => {
     try{
