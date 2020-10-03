@@ -23,10 +23,10 @@ router.post('/',async(req,res)=>{
             organization_id:req.body.organization_id || ""
         })
         await newmember.save().then(()=>{
-            res.status(201).send()
+            res.status(201).json({})
         })
     }catch(e){
-        res.status(500).send()
+        res.status(500).json({})
     }
 })
 
