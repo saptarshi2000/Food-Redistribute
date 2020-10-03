@@ -1,9 +1,10 @@
-const mongoose = require('mongoose')
 require('dotenv').config()
+const mongoose = require('mongoose')
+
 
 const MONGOURI = process.env.DATABASE_URL || "mongodb://localhost/fooddbjs"
 
-const InitiatDb = async () => {
+const InitiateDb = async () => {
     try{
         await mongoose.connect(MONGOURI,{
             useUnifiedTopology : true,
@@ -16,4 +17,4 @@ const InitiatDb = async () => {
     }
 }
 
-module.exports = InitiatDb
+module.exports = InitiateDb
