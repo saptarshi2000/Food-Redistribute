@@ -29,6 +29,14 @@ const foodschema = new Schema({
     max_people:{
         type:Number,
         require:true
+    },
+    city:{
+        type:String,
+        require:true
+    },
+    pin:{
+        type:String,
+        require:true
     }
 })
 

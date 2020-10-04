@@ -11,7 +11,10 @@ InitiateDb()
 
 app.use(bodyparser.json())
 app.use(cors())
+
+
 app.use('/userroutes',userroutes)
+
 app.listen(PORT,(req,res)=>{
     console.log(`server started at port ${PORT}`)
 })
