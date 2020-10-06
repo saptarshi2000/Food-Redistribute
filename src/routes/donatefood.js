@@ -11,6 +11,7 @@ router.post('/', async(req, res) => {
             food_type: req.body.food_type,
             posted_by: req.body.posted_by,
             max_people: req.body.max_people,
+            city:req.body.city,
             expirationDate:new Date(Date.now() + (parseFloat(req.body.hour) * 3600 * 1000))
         })
 

@@ -6,19 +6,33 @@ const router = express.Router()
 
 router.get('/', async (req, res) => {
     try {
-        const foods = food.find({
-                city: req.query.city.toLowerCase,
+
+        var query = {
+            max_people: {
+                $gt: parseInt(req.query.max_people)
+            } || 1
+        }
+        if (req.query.city) {
+            var _city = req.query.city.toLowerCase()
+            query = {
+                city: _city,
                 max_people: {
                     $gt: parseInt(req.query.max_people)
-                }
-            })
+                } || 1
+            }
+        }
+
+        console.log(_city)
+        const foods = food.find(query)
             .sort({
-                max_people: -1
-            }).exec((err,docs)=>{
-                
+                max_people: 1
+            }).exec((err, docs) => {
+                if (err) return res.status(400).json({})
+                return res.status(202).json(docs)
             })
     } catch (err) {
-
+        console.log(err)
+        return res.status(500).json({})
     }
 })
 

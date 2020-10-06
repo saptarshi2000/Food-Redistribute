@@ -18,12 +18,12 @@ router.post('/',async(req,res)=>{
             email:req.body.email,
             username:req.body.username,
             password:hashedpassword,
-            ac_type:req.body.ac_type,
+            ac_type:req.body.ac_type || "",
             organization_name:req.body.organization_name || "",
             organization_id:req.body.organization_id || ""
         })
         await newmember.save().then(()=>{
-            res.status(201).json({})
+            res.status(201).json({"result":"ok"})
         })
     }catch(e){
         res.status(500).json({})
