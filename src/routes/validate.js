@@ -1,18 +1,20 @@
-const express = require('express')
-const jwt = require('jsonwebtoken')
-
-const router  = express.Router()
-
-router.use('/',(req,res,next)=>{
-    if(req.body.token != null){
-        try{
-            jwt.verify(req.body.token,"private-key",(err,decoded)=>{
-                if(err) return res.send(401).json({})
-                req.decoded = decoded
-                next()
-            })
-        }catch(err){
-            res.status(500).json({})
-        }
+const jwt = require("jsonwebtoken")
+const User = require('../model/member')
+module.exports=(req,res,next)=>{
+    const {authorization} = req.headers
+    if(!authorization){
+        return res.status(401).json({error:"you must be logged in"})
     }
-})
+    const token = authorization.replace("Bearer ","")
+    jwt.verify(token,"abcd",(err,payload)=>{
+        if(err){
+        return res.status(401).json({error:"you must be logged in"})
+            
+        }
+        const {_id} = payload
+        User.findById(_id).then(userdata=>{
+            req.user = userdata
+        })
+        next()
+    })
+}
