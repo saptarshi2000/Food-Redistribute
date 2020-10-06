@@ -6,7 +6,10 @@ const member = require('../model/member')
 const router = express.Router()
 
 router.post('/',async(req,res)=>{
-    var email = req.body.email
+    const {name,email,password} = req.body
+    if(!email || !password || !name){
+        return res.status(422).json({error:"please add all the fields"})
+    }
     const chkmember = await member.findOne({email})
     if(chkmember){
         return res.status(412).json({"result":"useralready_exist"})
@@ -23,7 +26,7 @@ router.post('/',async(req,res)=>{
             organization_id:req.body.organization_id || ""
         })
         await newmember.save().then(()=>{
-            res.status(201).json({})
+            res.status(201).json({message:"saved successfully"})
         })
     }catch(e){
         res.status(500).json({})

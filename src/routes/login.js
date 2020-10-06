@@ -21,11 +21,15 @@ router.post('/',async(req,res) => {
     }else{
         const email = req.body.email
         const password = req.body.password
-        const member = await MemberTable.findOne({email:email})
-        if(!member){
-            return res.status(404).json({"result":"notmember"})
+        if(!email || !password){
+            res.status(422).json({error:"please add email or password"})
         }
+        
         try{
+            const member = await MemberTable.findOne({email:email})
+            if(!member){
+                return res.status(404).json({error:"Invalid email"})
+            }
             if(await bcryptjs.compare(password,member.password)){
                 const payload = {
                     _id:member._id,
@@ -35,7 +39,7 @@ router.post('/',async(req,res) => {
 
                 res.status(200).json({"token":token,"result":"ok"})
             }else{
-                res.status(400).json({"result":"wrong_password"})
+                res.status(400).json({error:"Invalid Password"})
             }
         }catch(e){
             res.status(500).json({})
