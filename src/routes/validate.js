@@ -1,6 +1,8 @@
 const jwt = require("jsonwebtoken")
 const User = require('../model/member')
-module.exports=(req,res,next)=>{
+const express= require('express')
+const router  =  express.Router()
+router.use((req,res,next)=>{
     const {authorization} = req.headers
     if(!authorization){
         return res.status(401).json({error:"you must be logged in"})
@@ -17,4 +19,4 @@ module.exports=(req,res,next)=>{
         })
         next()
     })
-}
+})

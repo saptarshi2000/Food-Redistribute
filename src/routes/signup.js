@@ -6,8 +6,8 @@ const member = require('../model/member')
 const router = express.Router()
 
 router.post('/',async(req,res)=>{
-    const {name,email,password} = req.body
-    if(!email || !password || !name){
+    const {username,email,password} = req.body
+    if(!email || !password || !username){
         return res.status(422).json({error:"please add all the fields"})
     }
     const chkmember = await member.findOne({email})
