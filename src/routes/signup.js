@@ -1,7 +1,7 @@
 const express = require('express')
 const bcryptjs = require('bcryptjs')
 
-const User = require('../model/member')
+const member = require('../model/member')
 
 const router = express.Router()
 
@@ -12,7 +12,7 @@ router.post('/',async(req,res)=>{
     }
     const chkmember = await member.findOne({email})
     if(chkmember){
-        return res.status(412).json({"result":"useralready_exist"})
+        return res.status(422).json({error:"useralready_exist"})
     }
     try{
         const salt = await bcryptjs.genSalt()
@@ -21,7 +21,7 @@ router.post('/',async(req,res)=>{
             email:req.body.email,
             username:req.body.username,
             password:hashedpassword,
-            ac_type:req.body.ac_type,
+            ac_type:req.body.ac_type|| "",
             organization_name:req.body.organization_name || "",
             organization_id:req.body.organization_id || ""
         })
@@ -30,10 +30,10 @@ router.post('/',async(req,res)=>{
         })
 
         
-    })
-    .catch(err=>{
+    }catch(err){
         console.log(err)
-    })
+    }
+
 })
 
 module.exports = router

@@ -17,7 +17,7 @@ router.all('/auth/*',(req,res,next)=>{
 router.use('/signup',signup)
 router.use('/login',login)
 router.use('/auth/claimfood',claimfood)
-router.use('/auth/logout',logut)
+router.use('/auth/logout',logout)
 router.use('/donatefood',donatefood)
 router.use('/availabefood',availablefood)
 router.use('/logout',logout)
