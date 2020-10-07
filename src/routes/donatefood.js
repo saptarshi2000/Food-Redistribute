@@ -27,7 +27,6 @@ router.post('/',upload.single('image'), async(req, res) => {
             imageUrl: 'http://127.0.0.1:3030/images/' + req.file.originalname,
             expirationDate:new Date(Date.now() + (parseFloat(req.body.hour) * 3600 * 1000))
         })
-
         await newfood.save().then(()=>{
             res.status(201).json({})
         })
