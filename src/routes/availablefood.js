@@ -7,14 +7,18 @@ router.get('/', async (req, res) => {
     try {
 
         var query = {
-            max_people:1
+            max_people: {
+                $gt: 1
+            }
         }
         if (req.query.city) {
             var _city = req.query.city.toLowerCase()
             query.city = _city
         }
         if(req.query.max_people){
-            query.max_people =parseInt(req.query.max_people)
+            query.max_people ={
+                $gt: req.query.max_people
+            }
         }
 
         console.log(_city)
