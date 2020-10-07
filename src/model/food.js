@@ -37,6 +37,10 @@ const foodschema = new Schema({
     pin:{
         type:String,
         require:true
+    },
+    imageUrl: {
+        type: String,
+        require: true,
     }
 })
 

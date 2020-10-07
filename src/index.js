@@ -12,6 +12,7 @@ InitiateDb()
 
 app.use(bodyparser.json())
 app.use(cors())
+app.use('/images',express.static('uploads'))
 
 app.use('/userroutes',userroutes)
 

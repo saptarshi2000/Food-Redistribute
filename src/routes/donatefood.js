@@ -1,17 +1,30 @@
 const express = require('express')
 const router = express.Router()
-
+const multer =  require('multer')
 const Food = require('../model/food')
 
-router.post('/', async(req, res) => {
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "./uploads")
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    }
+})
+
+var upload = multer({
+    storage: storage
+})
+
+router.post('/',upload.single('image'), async(req, res) => {
     try {
         var newfood = new Food({
-            title: req.body.title,
             items: req.body.items,
             food_type: req.body.food_type,
             posted_by: req.body.posted_by,
             max_people: req.body.max_people,
             city:req.body.city,
+            imageUrl: 'http://127.0.0.1:3030/images/' + req.file.originalname,
             expirationDate:new Date(Date.now() + (parseFloat(req.body.hour) * 3600 * 1000))
         })
 
