@@ -40,7 +40,16 @@ const foodschema = new Schema({
     },
     imageUrl: {
         type: String,
-        require: true,
+        require: true
+    },
+    claimed:{
+        type:Boolean,
+        required:true,
+        default:false
+    },
+    claimed_by:{
+        type:mongoose.Types.ObjectId,
+        ref:'members'
     }
 })
 
