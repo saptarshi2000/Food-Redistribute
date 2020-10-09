@@ -13,7 +13,7 @@ const memberSchema = new mongoose.Schema({
         require:true
     },
     ac_type :{
-        type:Number,
+        type:String,
         require:true
     },
     organization_name:{

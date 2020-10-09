@@ -9,11 +9,8 @@ const claimfood = require('./claimfood')
 const donatefood = require('./donatefood')
 const availablefood = require('./availablefood')
 
-router.all('/auth/*',(req,res,next)=>{
-    console.log("t")
-    res.send("d")
-    next()
-})
+router.all('/auth/*',validate)
+
 router.use('/signup',signup)
 router.use('/login',login)
 router.use('/auth/claimfood',claimfood)
