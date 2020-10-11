@@ -8,7 +8,7 @@ router.use((req,res,next)=>{
         return res.status(401).json({error:"you must be logged in"})
     }
     const token = authorization.replace("Bearer ","")
-    jwt.verify(token,"abcd",(err,payload)=>{
+    jwt.verify(token,"private-key",(err,payload)=>{
         if(err){
         return res.status(401).json({error:"you must be logged in"})
             
@@ -17,6 +17,7 @@ router.use((req,res,next)=>{
         User.findById(_id).then(userdata=>{
             req.user = userdata
         })
+        req._id = _id
         next()
     })
 })

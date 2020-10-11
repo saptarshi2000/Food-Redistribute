@@ -9,7 +9,8 @@ const InitiateDb = async () => {
         await mongoose.connect(MONGOURI,{
             useUnifiedTopology : true,
             useNewUrlParser:true,
-            useCreateIndex:true
+            useCreateIndex:true,
+            useFindAndModify:false
         })
         console.log('database connected')
     }catch(e){

@@ -41,11 +41,11 @@ router.post('/v2',async(req,res)=>{
     console.log("test")
     const {username,email,password} = req.body
     if(!email || !password || !username){
-        return res.status(422).json({error:"please add all the fields"})
+        res.status(422).json({error:"please add all the fields"})
     }
     const chkmember = await member.findOne({email})
     if(chkmember){
-        return res.status(409).json({message:"already_exist"})
+        res.status(409).json({message:"already_exist"})
     }
     try{
         const salt = await bcryptjs.genSalt()
