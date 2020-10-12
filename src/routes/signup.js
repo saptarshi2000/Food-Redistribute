@@ -6,7 +6,6 @@ const member = require('../model/member')
 const router = express.Router()
 
 router.post('/',async(req,res)=>{
-    console.log("test")
     const {username,email,password} = req.body
     if(!email || !password || !username){
         return res.status(422).json({error:"please add all the fields"})
@@ -27,7 +26,10 @@ router.post('/',async(req,res)=>{
             organization_id:req.body.organization_id || ""
         })
         await newmember.save().then(()=>{
+            console.log("POST /signup HTTP/1.1 200 " + Date.now())
             res.status(201).json({message:"saved successfully"})
+        }).catch(err=>{
+            console.log("POST /signup HTTP/1.1 400" + Date.now())
         })
 
         

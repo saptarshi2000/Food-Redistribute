@@ -50,6 +50,14 @@ const foodschema = new Schema({
     claimed_by:{
         type:mongoose.Types.ObjectId,
         ref:'members'
+    },
+    phone:{
+        type:String,
+        required:true
+    },
+    address:{
+        type:String,
+        required:true
     }
 })
 

@@ -17,18 +17,21 @@ var upload = multer({
 })
 
 router.post('/',upload.single('image'), async(req, res) => {
+    console.log("e")
     try {
         var newfood = new Food({
             items: req.body.items,
             food_type: req.body.food_type,
             posted_by: req.body.posted_by,
             max_people: req.body.max_people,
+            phone:req.body.phone,
+            address:req.body.address,
             city:req.body.city,
             imageUrl: 'http://127.0.0.1:3030/images/' + req.file.originalname,
             expirationDate:new Date(Date.now() + (parseFloat(req.body.hour) * 3600 * 1000))
         })
         await newfood.save().then(()=>{
-            res.status(201).json({})
+            res.status(201).json({result:"ok"})
         })
     }catch(err){
         console.error(err)
