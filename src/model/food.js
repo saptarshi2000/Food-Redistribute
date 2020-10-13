@@ -32,7 +32,7 @@ const foodschema = new Schema({
     },
     pin:{
         type:String,
-        required:true
+        
     },
     imageUrl: {
         type: String,

@@ -5,8 +5,7 @@ const router = express.Router()
 
 router.patch('/',async(req,res)=>{
     try{
-        var food = await foods.findOneAndUpdate({_id:req.body.food_id},{claimed_by:req._id,claimed:true},{new:true})
-
+        var food = await foods.findOneAndUpdate({_id:req.body.food_id,claimed:false},{claimed_by:req._id,claimed:true},{new:true})
         if(food){
             res.status(200).json({result:"ok",food})
         }else{
