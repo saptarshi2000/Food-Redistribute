@@ -5,7 +5,7 @@ const router = express.Router()
 router.get('/', async (req, res) => {
     try {
         var query = {
-            claimed_by: req.user_id
+            claimed_by: req._id
         }
         const list = await food.find(query)
         res.status(200).json(list)

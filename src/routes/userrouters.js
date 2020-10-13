@@ -8,12 +8,15 @@ const logout = require('./logout')
 const claimfood = require('./claimfood')
 const donatefood = require('./donatefood')
 const availablefood = require('./availablefood')
+const claimedlist = require('./claimedlist')
+
 
 router.all('/auth/*',validate)
 
 router.use('/signup',signup)
 router.use('/login',login)
 router.use('/auth/claimfood',claimfood)
+router.use('/auth/claimedlist',claimedlist)
 router.use('/auth/logout',logout)
 router.use('/donatefood',donatefood)
 router.use('/availabefood',availablefood)
