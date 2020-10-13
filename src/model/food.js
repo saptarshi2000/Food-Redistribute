@@ -1,21 +1,17 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 const foodschema = new Schema({
-    title:{
-        type:String,
-        require: true
-    },
     items:{
         type:String,
-        require:true
+        required:true
     },
     food_type:{
         type:String,
-        require:true
+        required:true
     },
     posted_at:{
         type:Date,
-        require:true,
+        required:true,
         default:Date.now()        
     },
     expirationDate: {
@@ -24,23 +20,23 @@ const foodschema = new Schema({
     },
     posted_by:{
         type:String,
-        require:true
+        required:true
     },
     max_people:{
         type:Number,
-        require:true
+        required:true
     },
     city:{
         type:String,
-        require:true
+        required:true
     },
     pin:{
         type:String,
-        require:true
+        required:true
     },
     imageUrl: {
         type: String,
-        require: true
+        required: true
     },
     claimed:{
         type:Boolean,

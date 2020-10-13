@@ -1,5 +1,3 @@
-const { compareSync } = require('bcryptjs')
-const { Router } = require('express')
 const express = require('express')
 const foods = require('../model/food')
 
