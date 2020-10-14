@@ -8,8 +8,10 @@ router.get('/', async (req, res) => {
             claimed_by: req._id
         }
         const list = await food.find(query)
+        console.log("GET /claimedlist HTTP/1.1 200" + Date.now())
         res.status(200).json(list)
     }catch(err){
+        console.log("GET /claimedlist HTTP/1.1 500" + Date.now())
         console.error(err)
         res.status(500).json({message:"Internal server error"})
     }

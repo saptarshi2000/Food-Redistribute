@@ -49,11 +49,9 @@ const foodschema = new Schema({
     },
     phone:{
         type:String,
-        required:true
     },
     address:{
         type:String,
-        required:true
     }
 })
 

@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get('/', async (req, res) => {
     try {
-
+        console.log("GET /availablefood HTTP/1.1 " + Date.now())
         var query = {
             max_people: {
                 $gt: 1
@@ -30,6 +30,7 @@ router.get('/', async (req, res) => {
                 return res.status(202).json(docs)
             })
     } catch (err) {
+        console.log("GET /availablefood HTTP/1.1 500" + Date.now())
         console.log(err)
         return res.status(500).json({})
     }

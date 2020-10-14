@@ -1,10 +1,15 @@
-const { json } = require('express')
+
 const mongoose = require('mongoose')
 
 const tokenSchema = new mongoose.Schema({
-    token:{
+    usertoken:{
         type:String,
         required:true
+    },
+    date:{
+        type:Date,
+        required:true,
+        default:Date.now()
     }
 })
 

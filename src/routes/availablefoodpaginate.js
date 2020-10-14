@@ -6,7 +6,7 @@ const router = express.Router()
 router.get('/',async(req,res)=>{
     try{
         const page = parseInt(req.query.page) || 1
-        const perPage = 20
+        const perPage = parseInt(req.query.perPage)
 
         var currentPage = page
         var prevPage =page===1?null: page - 1
@@ -16,6 +16,9 @@ router.get('/',async(req,res)=>{
 
         if(totalPages === page || totalPages ===0){
             nextPage = null
+        }
+        if(page >=totalPages){
+            return res.json({message:"end of list"})
         }
         const foods = await food.find({}).skip((perPage*page)-perPage).limit(perPage)
 
@@ -28,6 +31,7 @@ router.get('/',async(req,res)=>{
         })
 
     }catch(err){
+        console.log(err)
         res.status(500).json({})
     }
 })

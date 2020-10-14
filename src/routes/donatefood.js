@@ -31,9 +31,11 @@ router.post('/',upload.single('image'), async(req, res) => {
             expirationDate:new Date(Date.now() + (parseFloat(req.body.hour) * 3600 * 1000))
         })
         await newfood.save().then(()=>{
+            console.log("POST /donatefood HTTP/1.1 201 created" + Date.now())
             res.status(201).json({result:"ok"})
         })
     }catch(err){
+        console.log("POST /donatefood HTTP/1.1 500" + Date.now())
         console.error(err)
         res.status(500).json({})
     }

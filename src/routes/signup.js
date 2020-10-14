@@ -8,10 +8,12 @@ const router = express.Router()
 router.post('/',async(req,res)=>{
     const {username,email,password} = req.body
     if(!email || !password || !username){
+        console.log("POST /signup HTTP/1.1 400 validation_error" + Date.now())
         return res.status(422).json({error:"please add all the fields"})
     }
     const chkmember = await member.findOne({email})
     if(chkmember){
+        console.log("POST /signup HTTP/1.1 400 user_already_exist" + Date.now())
         return res.status(422).json({error:"useralready_exist"})
     }
     try{
@@ -26,14 +28,16 @@ router.post('/',async(req,res)=>{
             organization_id:req.body.organization_id || ""
         })
         await newmember.save().then(()=>{
-            console.log("POST /signup HTTP/1.1 200 " + Date.now())
+            console.log("POST /signup HTTP/1.1 201 user_created" + Date.now())
             res.status(201).json({message:"saved successfully"})
         }).catch(err=>{
-            console.log("POST /signup HTTP/1.1 400" + Date.now())
+            console.log("POST /signup HTTP/1.1 400 exception" + Date.now())
+            res.status(400).json({})
         })
 
         
     }catch(err){
+        console.log("POST /signup HTTP/1.1 500" + Date.now())
         console.log(err)
     }
 
