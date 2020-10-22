@@ -53,7 +53,7 @@ router.post('/', async (req, res) => {
                         email: email
                     }
                     const token = jwt.sign(payload, "private-key", {
-                        expiresIn: '24h'
+                        expiresIn: '168h'
                     })
                     console.log("POST /login HTTP/1.1 200 access_gained" + Date.now())
                     res.status(200).json({

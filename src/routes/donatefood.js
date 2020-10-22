@@ -19,6 +19,7 @@ var upload = multer({
 router.post('/',upload.single('image'), async(req, res) => {
     console.log("e")
     try {
+        var _city = String(req.body.city).toLowerCase()
         var newfood = new Food({
             items: req.body.items,
             food_type: req.body.food_type,
@@ -26,8 +27,8 @@ router.post('/',upload.single('image'), async(req, res) => {
             max_people: req.body.max_people,
             phone:req.body.phone,
             address:req.body.address,
-            city:req.body.city,
-            imageUrl: 'http://127.0.0.1:3030/images/' + req.file.originalname,
+            city:_city,
+            imageUrl: 'http://192.168.0.130:3030/images/' + req.file.originalname,
             expirationDate:new Date(Date.now() + (parseFloat(req.body.hour) * 3600 * 1000))
         })
         await newfood.save().then(()=>{

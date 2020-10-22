@@ -7,20 +7,14 @@ router.get('/', async (req, res) => {
     try {
         console.log("GET /availablefood HTTP/1.1 " + Date.now())
         var query = {
-            max_people: {
-                $gt: 1
-            },
             claimed:false
         }
+        console.log(req.query.city)
         if (req.query.city) {
             var _city = req.query.city.toLowerCase()
             query.city = _city
         }
-        if(req.query.max_people){
-            query.max_people ={
-                $gt: req.query.max_people
-            }
-        }
+        console.log(query)
 
         const foods = food.find(query)
             .sort({

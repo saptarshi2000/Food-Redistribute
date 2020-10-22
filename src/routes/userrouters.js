@@ -22,7 +22,7 @@ router.use('/auth/logout',logout)
 router.use('/donatefood',donatefood)
 router.use('/availabefood',availablefood)
 router.use('/avaiablefoodpaginate',availabefoodpaginate)
-router.use('/logout',logout)
+
 
 
 

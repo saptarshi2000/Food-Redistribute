@@ -20,13 +20,14 @@ router.use(async (req, res, next) => {
         //console.log(_token)
         if (_token) {
             return res.status(400).json({
-                message: "authentication error"
+                error: "authentication error"
             })
         }
         jwt.verify(token, "private-key", (err, payload) => {
             if (err) {
+                console.log("test")
                 res.status(401).json({
-                    error: "you must be logged in"
+                    error: "auth_error"
                 })
 
             } else {
@@ -44,7 +45,7 @@ router.use(async (req, res, next) => {
 
         })
     }catch(err){
-        res.json({message:"error"})
+        res.json({error:"error"})
     }
 })
 module.exports = router

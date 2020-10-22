@@ -15,8 +15,13 @@ const foodschema = new Schema({
         default:Date.now()        
     },
     expirationDate: {
-        type: Date,
-        expires: 0
+        type: Date//,
+        //expires: 0
+    },
+    status:{
+        type:String,
+        required:true,
+        default:true
     },
     posted_by:{
         type:String,
